@@ -5,14 +5,9 @@ import com.base.model.BaseIdResponse
 import com.base.model.BaseUserDto
 import com.base.model.BaseUserDtoPage
 import com.base.service.UserService
-import io.swagger.v3.oas.annotations.Parameter
-import jakarta.validation.Valid
-import jakarta.validation.constraints.NotNull
 import org.springframework.data.domain.Pageable
-import org.springframework.http.HttpStatusCode
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
 

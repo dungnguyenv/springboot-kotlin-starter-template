@@ -7,5 +7,7 @@ import org.springframework.boot.runApplication
 class BaseServiceApplication
 
 fun main(args: Array<String>) {
-    runApplication<com.base.BaseServiceApplication>(*args)
+    runApplication<BaseServiceApplication>(*args)
+    println("Hello World")
+    
 }

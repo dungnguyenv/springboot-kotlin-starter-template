@@ -1,18 +1,20 @@
 package com.base.mapper
 
+import com.base.entity.User
 import com.base.model.BaseIdResponse
 import com.base.model.BaseUserDto
 import com.base.model.BaseUserDtoPage
-import com.base.entity.User
 import com.base.service.RoleService
-import com.base.service.UserService
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.mapstruct.factory.Mappers
 import org.springframework.data.domain.Page
 
-@Mapper(componentModel = "spring",
-    uses = [RoleService::class])
+
+@Mapper(
+    componentModel = "spring",
+    uses = [RoleService::class]
+)
 interface UserMapper {
     companion object {
         @JvmField

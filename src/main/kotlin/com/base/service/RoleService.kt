@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service
 class RoleService(val roleRepository: RoleReposity) {
 
     fun getRoles(roles: List<String>?): List<Role> {
-        if(roles.isNullOrEmpty()) return mutableListOf()
+        if (roles.isNullOrEmpty()) return mutableListOf()
         return roleRepository.findByNameIn(roles)
     }
 
     fun getStrRoles(roles: List<Role>): List<String> {
-        if(roles.isEmpty()) return mutableListOf()
+        if (roles.isEmpty()) return mutableListOf()
         return roles.map { it.name }
     }
 }

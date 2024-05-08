@@ -40,14 +40,27 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("jakarta.validation:jakarta.validation-api:3.0.2")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.springdoc:springdoc-openapi-data-rest:1.7.0")
-    implementation("org.springdoc:springdoc-openapi-ui:1.7.0")
-    implementation("org.springdoc:springdoc-openapi-kotlin:1.7.0")
+//    implementation("org.springdoc:springdoc-openapi-data-rest:1.7.0")
+//    implementation("org.springdoc:springdoc-openapi-ui:1.7.0")
+//    implementation("org.springdoc:springdoc-openapi-kotlin:1.7.0")
+
+    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
+    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-common
+    implementation("org.springdoc:springdoc-openapi-starter-common:2.5.0")
+
     implementation("io.github.microutils:kotlin-logging-jvm:2.0.11")
     implementation("org.mapstruct.extensions.spring:mapstruct-spring-annotations:0.1.2")
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
+//    implementation("org.springframework.boot:spring-boot-devtools:1.3.0.RELEASE")
+
     kapt("org.mapstruct:mapstruct-processor:1.5.5.Final")
     runtimeOnly("org.postgresql:postgresql")
+//    runtimeOnly("org.springframework.boot:spring-boot-devtools")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.boot:spring-boot-testcontainers")
     testImplementation("org.springframework.boot:spring-boot-starter-webflux")

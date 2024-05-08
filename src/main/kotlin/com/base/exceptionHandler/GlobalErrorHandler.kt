@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 class GlobalErrorHandler : ResponseEntityExceptionHandler() {
 
     companion object : KLogging()
+
     override fun handleMethodArgumentNotValid(
         ex: MethodArgumentNotValidException,
         headers: HttpHeaders,
@@ -29,13 +30,14 @@ class GlobalErrorHandler : ResponseEntityExceptionHandler() {
     }
 
     @ExceptionHandler(ResourceNotFoundException::class)
-    fun handleResourcesNotFound(ex: ResourceNotFoundException, request: WebRequest) : ResponseEntity<Any> {
+    fun handleResourcesNotFound(ex: ResourceNotFoundException, request: WebRequest): ResponseEntity<Any> {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Error(ex.message))
     }
 
     @ExceptionHandler(Exception::class)
-    fun handleAllException (ex: Exception, request: WebRequest): ResponseEntity<Any> {
+    fun handleAllException(ex: Exception, request: WebRequest): ResponseEntity<Any> {
         logger.error("Exception observed ${ex.message}", ex)
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Error("Server error, please try again later."))
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(Error("Server error, please try again later."))
     }
 }

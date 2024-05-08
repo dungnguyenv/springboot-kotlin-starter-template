@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor
 @Entity
 @Table(name = "roles")
 @NoArgsConstructor
-data class Role (
+data class Role(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long?,
