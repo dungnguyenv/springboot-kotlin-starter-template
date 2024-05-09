@@ -1,11 +1,11 @@
 package com.base.service
 
 import com.base.entity.Role
-import com.base.repository.RoleReposity
+import com.base.repository.RoleRepository
 import org.springframework.stereotype.Service
 
 @Service
-class RoleService(val roleRepository: RoleReposity) {
+class RoleService(val roleRepository: RoleRepository) {
 
     fun getRoles(roles: List<String>?): List<Role> {
         if (roles.isNullOrEmpty()) return mutableListOf()

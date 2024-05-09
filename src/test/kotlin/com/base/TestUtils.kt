@@ -1,16 +1,16 @@
 package com.base
 
-import com.base.model.BaseUserDto
-import com.base.model.BaseUserDtoPage
 import com.base.entity.Role
 import com.base.entity.User
-import java.util.UUID
+import com.base.model.BaseUserDto
+import com.base.model.BaseUserDtoPage
+import java.util.*
 
 class TestUtils {
     companion object {
         val USER_ID: UUID = UUID.fromString("00000000-0000-0000-0000-000000001111")
         val USER_ID_TO_DELETE: UUID = UUID.fromString("00000000-0000-0000-0000-000000001113")
-        fun createUserDto() = BaseUserDto (
+        fun createUserDto() = BaseUserDto(
             name = "Test User",
             email = "m@gmail.com",
             password = "xxx",
@@ -18,9 +18,7 @@ class TestUtils {
             active = true
         )
 
-        fun createUser() = User (
-            null,
-            userId = USER_ID,
+        fun createUser() = User(
             name = "Test User",
             email = "m@gmail.com",
             password = "xxx",
@@ -28,7 +26,7 @@ class TestUtils {
             active = true
         )
 
-        fun createUserDtoPage() = BaseUserDtoPage (
+        fun createUserDtoPage() = BaseUserDtoPage(
             pageSize = 10,
             page = 1,
             data = listOf(createUserDto()),
@@ -36,6 +34,6 @@ class TestUtils {
             totalElements = 3
         )
 
-        private fun roles() = listOf(Role(1, "ROLE_ADMIN"))
+        private fun roles() = listOf(Role("ROLE_ADMIN"))
     }
 }

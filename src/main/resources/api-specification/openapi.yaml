@@ -42,9 +42,9 @@ paths:
   /base/{id}:
     $ref: 'base/base-api.yaml#/paths/~1base~1{id}'
 
-#components:
-#  securitySchemes:
-#    BearerAuth:
-#      type: http
-#      scheme: bearer
-#      bearerFormat: JWT  # optional, for documentation purposes only
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT  # optional, for documentation purposes only

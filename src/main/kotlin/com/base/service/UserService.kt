@@ -9,19 +9,22 @@ import com.base.model.BaseUserDtoPage
 import com.base.repository.UserRepository
 import mu.KLogging
 import org.springframework.data.domain.Pageable
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
 class UserService(
     val userMapper: UserMapper,
-    val userRepository: UserRepository
+    val userRepository: UserRepository,
+    val passwordEncoder: PasswordEncoder
 ) {
     companion object : KLogging()
 
     fun createBaseUser(baseUserDto: BaseUserDto): BaseIdResponse {
         logger.info { "creating base user ${baseUserDto.email}" }
         val user = userMapper.mapToUser(baseUserDto)
+        user.password = passwordEncoder.encode(baseUserDto.password)
         return userMapper.mapToUserDtoId(userRepository.save(user))
     }
 
@@ -42,6 +45,6 @@ class UserService(
         userRepository.delete(findById(userId))
     }
 
-    private fun findById(userId: UUID): User = userRepository.findByUserId(userId)
+    private fun findById(userId: UUID): User = userRepository.findById(userId)
         .orElseThrow { ResourceNotFoundException("User $userId Not Found") }
 }

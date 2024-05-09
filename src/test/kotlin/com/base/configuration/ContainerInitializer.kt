@@ -3,7 +3,8 @@ package com.base.configuration
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.utility.DockerImageName
 
-class ContainerInitializer private constructor() : PostgreSQLContainer<ContainerInitializer>(DockerImageName.parse("postgres:13-alpine")) {
+class ContainerInitializer private constructor() :
+    PostgreSQLContainer<ContainerInitializer>(DockerImageName.parse("postgres:13-alpine")) {
 
     override fun start() {
         super.start()

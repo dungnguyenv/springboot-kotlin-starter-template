@@ -1,34 +1,49 @@
---  db schema
-
-CREATE SCHEMA IF NOT EXISTS "base";
-
-CREATE TABLE IF NOT EXISTS users
+CREATE TABLE products
 (
-    id       BIGINT PRIMARY KEY GENERATED always AS IDENTITY,
-    user_Id  UUID         NOT NULL,
-    email    VARCHAR(100) NOT NULL,
-    password VARCHAR(100) NOT NULL,
-    name     VARCHAR(100) NOT NULL,
-    active   BOOLEAN      NOT NULL DEFAULT TRUE
+    id          UUID         NOT NULL,
+    created_at  TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    updated_at  TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    modified_by VARCHAR(255) NOT NULL,
+    created_by  VARCHAR(255) NOT NULL,
+    name        VARCHAR(255),
+    price       FLOAT        NOT NULL,
+    CONSTRAINT pk_products PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS roles
+CREATE TABLE roles
 (
-    id   SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL
+    id          UUID         NOT NULL,
+    created_at  TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    updated_at  TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    modified_by VARCHAR(255) NOT NULL,
+    created_by  VARCHAR(255) NOT NULL,
+    name        VARCHAR(255),
+    CONSTRAINT pk_roles PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS user_roles
+CREATE TABLE users
 (
-    user_id BIGINT NOT NULL REFERENCES users (id),
-    role_id BIGINT NOT NULL REFERENCES roles (id),
-    PRIMARY KEY (user_id, role_id)
+    id          UUID         NOT NULL,
+    created_at  TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    updated_at  TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    modified_by VARCHAR(255) NOT NULL,
+    created_by  VARCHAR(255) NOT NULL,
+    name        VARCHAR(255),
+    email       VARCHAR(255),
+    username    VARCHAR(255),
+    password    VARCHAR(255),
+    active      BOOLEAN      NOT NULL,
+    CONSTRAINT pk_users PRIMARY KEY (id)
 );
 
-INSERT INTO roles (name)
-SELECT 'ROLE_USER'
-WHERE NOT EXISTS (SELECT * FROM roles WHERE name = 'ROLE_USER');
+CREATE TABLE users_roles
+(
+    role_id UUID NOT NULL,
+    user_id UUID NOT NULL
+);
 
-INSERT INTO roles (name)
-SELECT 'ROLE_ADMIN'
-WHERE NOT EXISTS (SELECT * FROM roles WHERE name = 'ROLE_ADMIN');
+ALTER TABLE users_roles
+    ADD CONSTRAINT fk_userol_on_role FOREIGN KEY (role_id) REFERENCES roles (id);
+
+ALTER TABLE users_roles
+    ADD CONSTRAINT fk_userol_on_user FOREIGN KEY (user_id) REFERENCES users (id);

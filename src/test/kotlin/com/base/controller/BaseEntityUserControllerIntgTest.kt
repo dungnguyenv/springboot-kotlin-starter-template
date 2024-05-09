@@ -1,11 +1,10 @@
 package com.base.controller
 
+import com.base.TestUtils
+import com.base.configuration.DatabaseInitializer
 import com.base.model.BaseIdResponse
 import com.base.model.BaseUserDto
 import com.base.model.BaseUserDtoPage
-import com.base.TestUtils
-import com.base.configuration.ContainerInitializer
-import com.base.configuration.DatabaseInitializer
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,13 +14,11 @@ import org.springframework.data.domain.PageRequest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.web.util.UriComponentsBuilder
-import org.testcontainers.junit.jupiter.Container
-import org.testcontainers.junit.jupiter.Testcontainers
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 @AutoConfigureWebTestClient
-class BaseUserControllerIntgTest: DatabaseInitializer() {
+class BaseEntityUserControllerIntgTest : DatabaseInitializer() {
 
     @Autowired
     lateinit var webTestClient: WebTestClient

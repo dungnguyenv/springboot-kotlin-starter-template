@@ -11,10 +11,10 @@ import org.springframework.test.context.ActiveProfiles
 @DataJpaTest
 @ActiveProfiles("test")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class RolesRepositoryTest: DatabaseInitializer() {
+class RolesRepositoryTest : DatabaseInitializer() {
 
     @Autowired
-    lateinit var roleRepository: RoleReposity
+    lateinit var roleRepository: RoleRepository
 
     @Test
     fun findByName() {

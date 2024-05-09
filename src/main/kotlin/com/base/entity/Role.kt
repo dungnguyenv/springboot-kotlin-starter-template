@@ -1,14 +1,19 @@
 package com.base.entity
 
-import jakarta.persistence.*
-import lombok.NoArgsConstructor
+import com.base.entity.base.AuditingBaseEntity
+import jakarta.persistence.Entity
+import jakarta.persistence.FetchType
+import jakarta.persistence.ManyToMany
+import jakarta.persistence.Table
+import lombok.Builder
+import lombok.Data
+import lombok.RequiredArgsConstructor
 
 @Entity
 @Table(name = "roles")
-@NoArgsConstructor
-data class Role(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long?,
-    val name: String
-)
+@Data
+class Role(
+    var name: String,
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    var users: List<User> = mutableListOf()
+) : AuditingBaseEntity()

@@ -45,20 +45,23 @@ dependencies {
 //    implementation("org.springdoc:springdoc-openapi-kotlin:1.7.0")
 
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-common
-    implementation("org.springdoc:springdoc-openapi-starter-common:2.5.0")
+    implementation("org.springdoc:springdoc-openapi-starter-common:2.2.0")
 
     implementation("io.github.microutils:kotlin-logging-jvm:2.0.11")
     implementation("org.mapstruct.extensions.spring:mapstruct-spring-annotations:0.1.2")
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
-//    implementation("org.springframework.boot:spring-boot-devtools:1.3.0.RELEASE")
+
+    // jwt authentication
+    implementation("io.jsonwebtoken:jjwt-api:0.12.3")
+    implementation("io.jsonwebtoken:jjwt-impl:0.12.3")
+    implementation("io.jsonwebtoken:jjwt-jackson:0.12.3")
+    implementation("org.springframework.boot:spring-boot-starter-security")
 
     kapt("org.mapstruct:mapstruct-processor:1.5.5.Final")
     runtimeOnly("org.postgresql:postgresql")
-//    runtimeOnly("org.springframework.boot:spring-boot-devtools")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")

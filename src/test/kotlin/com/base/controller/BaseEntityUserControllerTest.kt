@@ -1,9 +1,9 @@
 package com.base.controller
 
+import com.base.TestUtils
 import com.base.model.BaseIdResponse
 import com.base.model.BaseUserDto
 import com.base.model.BaseUserDtoPage
-import com.base.TestUtils
 import com.base.service.UserService
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.Runs
@@ -20,7 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder
 
 @WebMvcTest(controllers = [BaseUserController::class])
 @AutoConfigureWebTestClient
-class BaseUserControllerTest {
+class BaseEntityUserControllerTest {
 
     @Autowired
     lateinit var webTestClient: WebTestClient
@@ -76,7 +76,7 @@ class BaseUserControllerTest {
     @Test
     fun getUsers() {
         //given
-        val email = null;
+        val email = null
         val baseUserDtoPage = TestUtils.createUserDtoPage()
         val pageable = PageRequest.of(1, 10)
         val uri = UriComponentsBuilder.fromUriString("/v1/base")

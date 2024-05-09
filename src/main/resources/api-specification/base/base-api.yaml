@@ -83,7 +83,7 @@ paths:
   /base/{id}:
     get:
       tags:
-          - Base User
+        - Base User
       summary: Get Base User by id
       operationId: getBaseUserById
       security:

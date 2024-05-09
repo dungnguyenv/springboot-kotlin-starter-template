@@ -3,7 +3,7 @@ package com.base.service
 import com.base.TestUtils
 import com.base.entity.Role
 import com.base.mapper.UserMapper
-import com.base.repository.RoleReposity
+import com.base.repository.RoleRepository
 import com.base.repository.UserRepository
 import io.mockk.every
 import io.mockk.mockk
@@ -16,13 +16,14 @@ import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.PageRequest
 import org.springframework.test.util.ReflectionTestUtils
+import java.util.*
 
 
 @ExtendWith(MockitoExtension::class)
 class UserServiceTest {
 
     val userRepository: UserRepository = mockk()
-    val roleRepository: RoleReposity = mockk()
+    val roleRepository: RoleRepository = mockk()
 
     private val userMapper = UserMapper.INSTANCE
 
@@ -40,8 +41,12 @@ class UserServiceTest {
         val userDto = TestUtils.createUserDto()
 
         //when
-        every { roleRepository.findByNameIn(any()) } returns listOf(Role(1, "USER"))
-        every { userRepository.save(any()) } returns  user.copy(id = 1)
+        every { roleRepository.findByNameIn(any()) } returns listOf(
+            Role(
+                name = "ROLE_USER",
+            )
+        )
+        every { userRepository.save(any()) } returns user
 
         //then
         val res = userService.createBaseUser(userDto)
@@ -73,15 +78,15 @@ class UserServiceTest {
     fun getUser() {
         //given
         val user = TestUtils.createUser()
-        val userId = user.userId
+        val userId = user.id ?: UUID.randomUUID()
 
         //when
-        every { userRepository.findByUserId(userId) } returns java.util.Optional.of(user)
+        every { userRepository.findById(userId) } returns Optional.of(user)
 
         //then
         val userRes = userService.getUser(userId)
 
-        verify(exactly = 1) { userRepository.findByUserId(userId) }
+        verify(exactly = 1) { userRepository.findById(userId) }
         Assertions.assertNotNull(userRes)
         Assertions.assertEquals(user.name, userRes.name)
     }
@@ -90,15 +95,15 @@ class UserServiceTest {
     fun deleteUser() {
         //given
         val user = TestUtils.createUser()
-        val userId = user.userId
+        val userId = user.id ?: UUID.randomUUID()
 
         //when
-        every { userRepository.findByUserId(userId) } returns java.util.Optional.of(user)
+        every { userRepository.findById(userId) } returns Optional.of(user)
         every { userRepository.delete(any()) } returns Unit
 
         //then
         userService.deleteUser(userId)
-        verify(exactly = 1) { userRepository.findByUserId(userId) }
+        verify(exactly = 1) { userRepository.findById(userId) }
         verify(exactly = 1) { userRepository.delete(user) }
     }
 }

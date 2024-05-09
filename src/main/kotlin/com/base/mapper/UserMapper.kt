@@ -22,13 +22,12 @@ interface UserMapper {
     }
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "userId", expression = "java(java.util.UUID.randomUUID())")
     fun mapToUser(userDto: BaseUserDto): User
 
     @Mapping(target = "password", defaultValue = "*****")
     fun mapToUserDto(user: User): BaseUserDto
 
-    @Mapping(target = "id", source = "userId")
+    @Mapping(target = "id", source = "id")
     fun mapToUserDtoId(user: User): BaseIdResponse
 
     @Mapping(target = "pageSize", source = "size")

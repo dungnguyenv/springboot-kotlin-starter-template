@@ -8,6 +8,4 @@ class BaseServiceApplication
 
 fun main(args: Array<String>) {
     runApplication<BaseServiceApplication>(*args)
-    println("Hello World")
-    
 }
